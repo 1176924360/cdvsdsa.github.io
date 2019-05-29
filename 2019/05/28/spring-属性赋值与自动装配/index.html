@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, Java">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>spring_属性赋值与自动装配 | Hexo</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="default" data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Hexo</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">归档</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/spring-属性赋值与自动装配/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="嘤嘤怪&&🐶">
+       <meta itemprop="description" content>
+       <meta itemprop="image" content="/images/blog.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Hexo">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">spring_属性赋值与自动装配</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-28T15:26:07+08:00">2019-05-28 15:26:07</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <h2 id="spring-属性赋值与自动装配"><a href="#spring-属性赋值与自动装配" class="headerlink" title="spring_属性赋值与自动装配"></a>spring_属性赋值与自动装配</h2><h3 id="1-属性赋值"><a href="#1-属性赋值" class="headerlink" title="1.属性赋值"></a>1.属性赋值</h3><p>使用@value注解便可以使容器中的属性进行赋值</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"#&#123;22-2&#125;"</span>)<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"zhangsan"</span>)<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;person.nickNmae&#125;"</span>)<br>    <span class="hljs-keyword">private</span> String nickNmae;<br>    <span class="hljs-comment">//get()、set()方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>1.@Value(“zhangsan”)，在value中直接写入属性，基本数值都可以。<br>2.@Value(“#{22-2}”)，SPEL表达式，在表达式中可以进行运算。<br>3.@Value(“${person.nickNmae}”)，获取到外部配置文件中的值</p>
+<ul>
+<li><p>通过外部配置文件获取属性值时，首先需要编写一个properties文件</p>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties">person.nickNmae=xiaolisi<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>之后再在配置类中使用@PropertySource属性，将外部的配置文件扫描到。</p>
+</li>
+<li>最后，便可以使用${}获取配置文件的值。</li>
+</ul>
+<p>测试代码如下</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PropertyTest</span> </span>&#123;<br>    AnnotationConfigApplicationContext context = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(MyConfigOfproperty.class);<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun1</span><span class="hljs-params">()</span></span>&#123;<br>        showBeanNames(context);<br>        Person person = (Person) context.getBean(<span class="hljs-string">"person"</span>);<br>        System.out.println(person);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showBeanNames</span><span class="hljs-params">(ApplicationContext context)</span></span>&#123;<br>        String[] names = context.getBeanDefinitionNames();<br>        <span class="hljs-keyword">for</span> (String name : names) &#123;<br>            System.out.println(name);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="/2019/05/28/spring-属性赋值与自动装配/QQ截图20190528154531.png" alt="测试结果"></p>
+<p>结果可以看到age=20,name=’zhangsan’,nickNmae=’xiaolisi’与注入的属性值相符。</p>
+<h3 id="2-自动装配"><a href="#2-自动装配" class="headerlink" title="2.自动装配"></a>2.自动装配</h3><h4 id="2-1-Autowired注解"><a href="#2-1-Autowired注解" class="headerlink" title="2.1 @Autowired注解"></a>2.1 @Autowired注解</h4><p>在一般的web项目，存在controller层、service层、dao层，在使用service层时需要调用dao层的方法，使用controller层时需要调用service层的方法，并且在当前的类中不创建调用类的实例。这时@Autowired注解就解决了这个问题。</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookService</span> </span>&#123;<br>     <span class="hljs-meta">@Autowired</span><br>     BookDao bookDao2;<br>     <span class="hljs-meta">@Override</span><br>     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>         <span class="hljs-keyword">return</span> <span class="hljs-string">"BookService&#123;"</span> +<br>                 <span class="hljs-string">"bookDao="</span> + bookDao2 +<br>                 <span class="hljs-string">'&#125;'</span>;<br>     &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上述代码为，在BookService类中需要注入BookDao，加上@Autowired注解便可以将BookDao属性加载。将上述代码进行测试</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AutowiredTest</span> </span>&#123;<br>    AnnotationConfigApplicationContext context = <br>    <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(MyConfigOfAutowired.class);<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun1</span><span class="hljs-params">()</span></span>&#123;<br>        BookService bookService = context.getBean(BookService.class);<br>        System.out.println(bookService);<br>        BookDao bookDao = context.getBean(BookDao.class);<br>        System.out.println(bookDao);  <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="/2019/05/28/spring-属性赋值与自动装配/QQ截图20190528160946.png" alt="测试结果"></p>
+<p>上图可以看出，在BookService中注入的BookDao与bean容器中的BookDao是同一个。<br>@Autowired注解在注入容器中的属性时，首先会按照类型去容器中找到对应的组件。假如@Autowired注解在注入容器中的属性时，首先会按照类型去容器中找到对应的组件。假如@Autowired标注在BookDao bookDao2上，首先它会去找容器中类型为BookDao的组件，如果容器中有多个BookDao的组件，则再根据属性名作为组件id去容器中找，如此时的属性名为bookDao2，则去容器中寻找id名为bookDao2的组件。</p>
+<p>首先，容器中有一个bookDao，将其标记为“1”<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Repository</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDao</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String tag = <span class="hljs-string">"1"</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getTag</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> tag;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setTag</span><span class="hljs-params">(String tag)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.tag = tag;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">"BookDao&#123;"</span> +<br>                <span class="hljs-string">"tag='"</span> + tag + <span class="hljs-string">'\''</span> +<br>                <span class="hljs-string">'&#125;'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>再在配置类中注入一个BookDao的组件，将其命名为bookDao2，并标记为“2”</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span>(<span class="hljs-string">"bookDao2"</span>)<br><span class="hljs-function"><span class="hljs-keyword">public</span> BookDao <span class="hljs-title">bookDao</span><span class="hljs-params">()</span></span>&#123;<br>    BookDao bookDao = <span class="hljs-keyword">new</span> BookDao();<br>    bookDao.setTag(<span class="hljs-string">"2"</span>);<br>    <span class="hljs-keyword">return</span> bookDao;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>测试代码自动装配的BookDao命名为bookDao2;</p>
+<p><img src="/2019/05/28/spring-属性赋值与自动装配/QQ截图20190528162335.png" alt="测试结果"></p>
+<p>可以看到，BookService自动装配的BookDao为bookDao2。</p>
+<p>除了按照id，spring也有@Qualifier注解，指定需要装配的组件的id。@Qualifier(“bookDao”)，表明需要装配id为bookDao的组件。</p>
+<p><img src="/2019/05/28/spring-属性赋值与自动装配/QQ截图20190528162727.png" alt="测试结果"></p>
+<p>可以看到，BookService自动装配的BookDao为bookDao，因为其tag的属性为“1”。</p>
+<p>spring的默认规定自动装配的组件一定要将属性赋值好，没有就报错。将@Qualifier里的属性改为@Qualifier(“bookDao3”)，在没有bookDao3的情况下会报错。</p>
+<p><img src="/2019/05/28/spring-属性赋值与自动装配/QQ截图20190528163304.png" alt="报错信息"></p>
+<p>从报错可以看到，是因为找不到bookDao3而出错</p>
+<p>这是因为@Autowired中有一个required属性，其属性默认值为true，即自动装配的值必须要赋值好，当将其改为false时，没有赋值也不报错，    @Autowired(required = false)。</p>
+<p><img src="/2019/05/28/spring-属性赋值与自动装配/QQ截图20190528163600.png" alt="测试结果"></p>
+<p>自动装配还有一个@Primary注解，即在自动装配时使用有@Primary注解的Bean，但是使用@Qualifier后，会使用@Qualifier指定id的bean。</p>
+<h4 id="2-2-Resource注解，-Inject注解"><a href="#2-2-Resource注解，-Inject注解" class="headerlink" title="2.2 @Resource注解，@Inject注解"></a>2.2 @Resource注解，@Inject注解</h4><p>@Resource和@Inject注解是Java规范的注解，与@Autowired一样实现自动装配。</p>
+<ul>
+<li>@Resource注解只有一个name属性，指定获取的组件的id，除此之外不支持其他的功能</li>
+<li>@Inject注解需要在maven中导入相关的依赖，除了没有required的属性，其余都和@Autowired一样使用。</li>
+</ul>
+<h4 id="2-3-Autowired标注位置"><a href="#2-3-Autowired标注位置" class="headerlink" title="2.3 @Autowired标注位置"></a>2.3 @Autowired标注位置</h4><ul>
+<li>属性上就如上所述</li>
+<li>set***()方法上</li>
+<li>标在有参构造器上</li>
+<li>标在参数位置，但是只有一个有参构造器时，@Autowired注解可以省略，也可以进行自动装配</li>
+<li>使用@Bean注解创建对象时，方法的参数从容器中获得<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Color <span class="hljs-title">color</span><span class="hljs-params">(Car car)</span></span>&#123;<br>        Color color = <span class="hljs-keyword">new</span> Color();<br>        color.setCar(car);<br>        <span class="hljs-keyword">return</span> color;<br>    &#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-4-自定义组件"><a href="#2-4-自定义组件" class="headerlink" title="2.4 自定义组件"></a>2.4 自定义组件</h4><p>spring容器的底层组件都需要实现Aware接口，这是一个总接口，其中还有很多子接口，当实现子接口且重写其方法，便可以自定义组件。<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Red</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationContextAware</span>, <span class="hljs-title">BeanNameAware</span>, <span class="hljs-title">EmbeddedValueResolverAware</span></span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setApplicationContext</span><span class="hljs-params">(ApplicationContext applicationContext)</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;<br>        System.out.println(<span class="hljs-string">"Ioc:"</span>+applicationContext);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBeanName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"Name:"</span>+name);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setEmbeddedValueResolver</span><span class="hljs-params">(StringValueResolver resolver)</span> </span>&#123;<br>        String value = resolver.resolveStringValue(<span class="hljs-string">"$&#123;os.name&#125;"</span>+ <span class="hljs-string">"....."</span> + <span class="hljs-string">"#&#123;10*2&#125;"</span>);<br>        System.out.println(value);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>上述代码中ApplicationContextAware可以实现Ioc容器的创建，BeanNameAware接口可以得到Bean的name，EmbeddedValueResolverAware接口可以解析相应的表达式，如SPLE表达式。</p>
+<h4 id="2-5-Profile环境搭建"><a href="#2-5-Profile环境搭建" class="headerlink" title="2.5 @Profile环境搭建"></a>2.5 @Profile环境搭建</h4><p>spring可以根据当前的环境，动态激活与切换组件，此时需要使用@Profile，此注解的默认值时default环境。</p>
+<p>环境的改变</p>
+<ul>
+<li>可以使用命令行参数，将其改为-Dspring.profiles.active=***，其中等式后面的值为具体的环境。</li>
+<li>也可以在不该变命令行的前提下使用AnnotationConfigApplicationContext的无参构造器，在注册配置类之前，改变其环境，使用.getEnvironment().setActiveProfiles()方法。</li>
+</ul>
+
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  
+<div class="reward" id="reward">
+  <p>希望在帮助到自己的同时也可以帮助你！</p>
+  <button id="reward-button" class="button" disable="enable">打赏</button>
+  <div id="qr" class="qr" style="display: none;" aria-hidden="true">
+    
+    <div id="wechat">
+      <img id="wechat_qr" src="/images/wx_ds.jpg" alt="微信支付">
+      <span>微信支付</span>
+    </div>
+    
+    
+    
+  </div>
+</div>
+
+
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/05/26/spring-Bean的生命周期/" rel="next" title="spring_Bean的生命周期"><i class="fas fa-angle-left"></i><span class="nav-title">spring_Bean的生命周期</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2019/05/29/spring-aop/" rel="prev" title="spring_aop"><span class="nav-title">spring_aop</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  
+  <div id="vcomments" class="vcomments"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function () {
+    new Valine({
+      "el": "#vcomments",
+      "appId": "kRqMnbmUujwPVMH3Qqo272g2-gzGzoHsz",
+      "appKey": "vJuJTznw3VXLJwd5YYu3Q9HF",
+      "verify": "false",
+      "notify": "false",
+      "avatar": "mm",
+      "meta": ["nick", "mail", "link"],
+      "pageSize": 10,
+      "lang": "zh-cn",
+      "visitor": "false",
+      "highlight": "true",
+      "placeholder": "在这里说点什么……",
+      "avatarForce": "false"
+    });
+  });
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control">
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/blog.jpg" alt="嘤嘤怪&&🐶">
+  
+  <h1 class="author-name">嘤嘤怪&&🐶</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">4</a></div>
+    </div>
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#spring-属性赋值与自动装配"><span class="toc-text">spring_属性赋值与自动装配</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#1-属性赋值"><span class="toc-text">1.属性赋值</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#2-自动装配"><span class="toc-text">2.自动装配</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#2-1-Autowired注解"><span class="toc-text">2.1 @Autowired注解</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#2-2-Resource注解，-Inject注解"><span class="toc-text">2.2 @Resource注解，@Inject注解</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#2-3-Autowired标注位置"><span class="toc-text">2.3 @Autowired标注位置</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#2-4-自定义组件"><span class="toc-text">2.4 自定义组件</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#2-5-Profile环境搭建"><span class="toc-text">2.5 @Profile环境搭建</span></a></li></ol></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接<p></p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:1176924360@qq.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/cdvsdsa" target="_blank">cdvsdsa</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/u/3967811493" target="_blank">不是人民的好榜样</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">嘤嘤怪&&🐶</span><span class="year"><i class="far fa-copyright"></i>2019 - 2019</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

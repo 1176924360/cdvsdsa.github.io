@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, Java">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>spring组件注册 | Hexo</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="default" data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Hexo</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">归档</span></a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/spring组件注册/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="嘤嘤怪&&🐶">
+       <meta itemprop="description" content>
+       <meta itemprop="image" content="/images/blog.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Hexo">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">spring组件注册</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-25T21:29:39+08:00">2019-05-25 21:29:39</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <h2 id="spring源码解析之注解篇"><a href="#spring源码解析之注解篇" class="headerlink" title="spring源码解析之注解篇"></a>spring源码解析之注解篇</h2><h4 id="spring一个重要的技术是Ioc与DI"><a href="#spring一个重要的技术是Ioc与DI" class="headerlink" title="spring一个重要的技术是Ioc与DI"></a>spring一个重要的技术是Ioc与DI</h4><p>1.在传统开发中会创建一个xml文件，在其中定义一个bean，如下：<br><figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"people"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.hdu.bean.Person"</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"lisi"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"age"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"22"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>使用xml使得开发很繁琐。因此，许多人会用注解开发代替传统的xml开发。那么在注解开发时，需要完成上述的bean注入需要怎么做呢?</p>
+<ul>
+<li>需要写配置类，在一个class文件上标注@configration</li>
+<li>在类中写一个方法，方法返回值为注入bean的类型</li>
+<li>方法上可以加@bean(value = “***”)注解,value的属性是此bean的name，类比为xml中的id属性<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainConfig</span> </span>&#123;<br>    <span class="hljs-meta">@Bean</span>(<span class="hljs-string">"person"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Person <span class="hljs-title">person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person(<span class="hljs-number">22</span>, <span class="hljs-string">"lisi"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最后将测试证明，xml与注解得到的bean一样<br>xml测试代码：<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IOCTest</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test0</span><span class="hljs-params">()</span></span>&#123;<br>        ClassPathXmlApplicationContext context = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(<span class="hljs-string">"src/main/resource/bean.xml"</span>);<br>        Person person = (Person) context.getBean(<span class="hljs-string">"person"</span>);<br>        System.out.println(person);<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p><img src="/2019/05/25/spring组件注册/QQ截图20190525213128.png" alt="xml测试结果"><br>注解测试代码：<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IOCTest</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span></span>&#123;<br>            AnnotationConfigApplicationContext context = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(MainConfig.class);<br>            Object person = context.getBean(<span class="hljs-string">"person"</span>);<br>            System.out.println(person);<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>AnnotationConfigApplicationContext类可以得到由@Configuration注解的类。<br><img src="/2019/05/25/spring组件注册/QQ截图20190525214624.png" alt="注解测试结果"></p>
+<p>2.包扫描<br>在传统的xml开发模式中<br><figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"cn.hdu"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">context:component-scan</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<ul>
+<li>使用注解可以在config类上加@ComponentScan(value=”cn.hdu”),value中的内容为需要扫描的包，在这写包上，只要存在class文件上有@Controller、@@Repository、@Service、@Component注解，便可以使用此扫描到。</li>
+<li>在一般的项目中，存在controller层，service层dao层，在这三个包的类中加上@@Repository、@Service、@Controller注解<br><img src="/2019/05/25/spring组件注册/QQ截图20190526124559.png" alt="各个类的分布"><br>配置类的代码<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ComponentScan</span>(value = <span class="hljs-string">"cn.hdu"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainConfig</span> </span>&#123;<br>    <span class="hljs-meta">@Bean</span>(<span class="hljs-string">"person"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Person <span class="hljs-title">person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person(<span class="hljs-number">17</span>, <span class="hljs-string">"lisi"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>测试类的代码<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IOCTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test01</span><span class="hljs-params">()</span></span>&#123;<br>        AnnotationConfigApplicationContext context = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(MainConfig.class);<br>        String[] names = context.getBeanDefinitionNames();<br>        <span class="hljs-keyword">for</span> (String name : names) &#123;<br>            System.out.println(name);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>getBeanDefinitionNames()方法可以得到已经创建的bean的名字，并返回一个数组。<br><img src="/2019/05/25/spring组件注册/QQ截图20190526125117.png" alt="包扫面注解测试结果"><br>除却spring自己需要的容器，还扫描到了mainConfig、bookController、bookDao、bookService、person，其中扫面到mainConfig这个配置类是因为@Configuration注解，@Configuration注解的源码为<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target</span>(ElementType.TYPE)<br><span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)<br><span class="hljs-meta">@Documented</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Configuration &#123;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>@Configuration注解上有@Component注解，而@ComponentScan注解是可以扫描到注有@Component注解的类<br>得到person是因为有@Bean注解。</p>
+<ul>
+<li>@ComponentScan注解除了有value属性，还有excludeFilters与includeFilters，当设置了后面的属性，此注解扫描到的包可以由自己定制<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Filter[] excludeFilters() <span class="hljs-keyword">default</span> &#123;&#125;;<br>Filter[] includeFilters() <span class="hljs-keyword">default</span> &#123;&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这两个属性都需要Filter数组，查看Filter源码<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@interface</span> Filter &#123;<br><br>		<span class="hljs-comment">/**<br>		 * The type of filter to use.<br>		 * &lt;p&gt;Default is &#123;<span class="hljs-doctag">@link</span> FilterType#ANNOTATION&#125;.<br>		 * <span class="hljs-doctag">@see</span> #classes<br>		 * <span class="hljs-doctag">@see</span> #pattern<br>		 */</span><br>		<span class="hljs-function">FilterType <span class="hljs-title">type</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> FilterType.ANNOTATION</span>;<br>		<span class="hljs-comment">/**<br>		 * Alias for &#123;<span class="hljs-doctag">@link</span> #classes&#125;.<br>		 * <span class="hljs-doctag">@see</span> #classes<br>		 */</span><br>		<span class="hljs-meta">@AliasFor</span>(<span class="hljs-string">"classes"</span>)<br>		Class&lt;?&gt;[] value() <span class="hljs-keyword">default</span> &#123;&#125;;<br></code></pre></td></tr></table></figure></p>
+<p>配置Filter，需要FilterType与Class&lt;?&gt;[]，Class&lt;?&gt;[]为需要过滤的类的.class属性，查看FilterType源码<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> FilterType &#123;<br><br>	<span class="hljs-comment">/**<br>	 * Filter candidates marked with a given annotation.<br>	 * <span class="hljs-doctag">@see</span> org.springframework.core.type.filter.AnnotationTypeFilter<br>	 */</span><br>	ANNOTATION,<br>	<span class="hljs-comment">/**<br>	 * Filter candidates assignable to a given type.<br>	 * <span class="hljs-doctag">@see</span> org.springframework.core.type.filter.AssignableTypeFilter<br>	 */</span><br>	ASSIGNABLE_TYPE,<br>	<span class="hljs-comment">/**<br>	 * Filter candidates matching a given AspectJ type pattern expression.<br>	 * <span class="hljs-doctag">@see</span> org.springframework.core.type.filter.AspectJTypeFilter<br>	 */</span><br>	ASPECTJ,<br>	<span class="hljs-comment">/**<br>	 * Filter candidates matching a given regex pattern.<br>	 * <span class="hljs-doctag">@see</span> org.springframework.core.type.filter.RegexPatternTypeFilter<br>	 */</span><br>	REGEX,<br>	<span class="hljs-comment">/** Filter candidates using a given custom<br>	 * &#123;<span class="hljs-doctag">@link</span> org.springframework.core.type.filter.TypeFilter&#125; implementation.<br>	 */</span><br>	CUSTOM<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>可以看出FilterType有5个属性，为ANNOTATION，ASSIGNABLE_TYPE,ASPECTJ,REGEX,CUSTOM</p>
+<ul>
+<li>ANNOTATION为按照注解过滤</li>
+<li>ASSIGNABLE_TYPE为按照类型过滤</li>
+<li>ASPECTJ,REGEX为按表达式过滤</li>
+<li>CUSTOM是自定义<br>举例type为ANNOTATION，其代码为<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ComponentScan</span>(value = <span class="hljs-string">"cn.hdu"</span>, excludeFilters = &#123;<br>        <span class="hljs-meta">@ComponentScan</span>.Filter(type = FilterType.ANNOTATION, classes = &#123;<br>                Controller.class, Service.class<br>        &#125;)<br>&#125;)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainConfig</span> </span>&#123;<br>    <span class="hljs-meta">@Bean</span>(<span class="hljs-string">"person"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Person <span class="hljs-title">person</span><span class="hljs-params">()</span></span>&#123;<br><span class="hljs-comment">//        System.out.println("start.......");</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person(<span class="hljs-number">17</span>, <span class="hljs-string">"lisi"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2019/05/25/spring组件注册/QQ截图20190526131830.png" alt="使用excludeFilters的测试结果"><br>可以发现Controllery与Service的容器不见了，这是因为excludeFilters属性起作用了</p>
+<ul>
+<li>当type为CUSTOM时，查看CUSTOM可以发现@link org.springframework.core.type.filter.TypeFilter} implementation.注释，即为需要实现TypeFilter的接口，其代码如下<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyTypeFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TypeFilter</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">match</span><span class="hljs-params">(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>            AnnotationMetadata annotationMetadata = metadataReader.getAnnotationMetadata();<br>            ClassMetadata classMetadata = metadataReader.getClassMetadata();<br>            Resource resource = metadataReader.getResource();<br>            String className = classMetadata.getClassName();<br>            System.out.println(className);<br>            <span class="hljs-keyword">if</span>(className.contains(<span class="hljs-string">"er"</span>))<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其要实现的方法为match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory)方法，此方法中有两个参数</p>
+<ul>
+<li><p>metadataReader参数，其方法有</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MetadataReader</span> </span>&#123;<br>    <span class="hljs-function">Resource <span class="hljs-title">getResource</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function">ClassMetadata <span class="hljs-title">getClassMetadata</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function">AnnotationMetadata <span class="hljs-title">getAnnotationMetadata</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>metadataReaderFactory参数为一个metadataReader工厂，可以由工厂得到metadataReader参数</p>
+</li>
+</ul>
+<p>3.作用域与懒加载</p>
+<ul>
+<li>作用域 @Scope注解  其属性有SCOPE_PROTOTYPE，SCOPE_SINGLETON，SCOPE_REQUEST，SCOPE_SESSION四个，最多用的为SCOPE_PROTOTYPE，SCOPE_SINGLETON，一个为多例模式，一个为单例模式，其中默认是单例模式。</li>
+<li>懒加载 @Lazy  在默认单例模式中，只要创建容器，还没有创实例之前，就会完成方法，加入单例模式后，只有创建实例才会完成方法。</li>
+</ul>
+<p>4.按条件判断是否创建bean容器<br>当使用@Conditional()注解后，在创建bean容器之前会先判断@Conditional()中的条件有没有成立，只有成立后才会创建bean容器。<br>Conditional源码<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Conditional &#123;<br>	<span class="hljs-comment">/**<br>	 * All &#123;<span class="hljs-doctag">@link</span> Condition&#125;s that must &#123;<span class="hljs-doctag">@linkplain</span> Condition#matches match&#125;<br>	 * in order for the component to be registered.<br>	 */</span><br>	Class&lt;? extends Condition&gt;[] value();<br><br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>使用此注解需要实现Condition接口，实现matches()方法。举例代码<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WindowsCondition</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Condition</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">matches</span><span class="hljs-params">(ConditionContext context, AnnotatedTypeMetadata metadata)</span> </span>&#123;<br>        Environment environment = context.getEnvironment();<br>        String property = environment.getProperty(<span class="hljs-string">"os.name"</span>);<br>        <span class="hljs-keyword">return</span> property.contains(<span class="hljs-string">"Windows"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>5  其他创建bean容器的注解</p>
+<ul>
+<li>@Import注解<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Import &#123;<br>	<span class="hljs-comment">/**<br>	 * &#123;<span class="hljs-doctag">@link</span> Configuration&#125;, &#123;<span class="hljs-doctag">@link</span> ImportSelector&#125;, &#123;<span class="hljs-doctag">@link</span> ImportBeanDefinitionRegistrar&#125;<br>	 * or regular component classes to import.<br>	 */</span><br>	Class&lt;?&gt;[] value();<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在此注解中可以直接写一个需要注入类的.clss的属性，也可以写ImportSelector.class与ImportBeanDefinitionRegistrar.class<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Import</span>(&#123;Color.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class&#125;)<br></code></pre></td></tr></table></figure></p>
+<ul>
+<li>ImportSelector<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ImportSelector</span> </span>&#123;<br>	<span class="hljs-comment">/**<br>	 * Select and return the names of which class(es) should be imported based on<br>	 * the &#123;<span class="hljs-doctag">@link</span> AnnotationMetadata&#125; of the importing @&#123;<span class="hljs-doctag">@link</span> Configuration&#125; class.<br>	 */</span><br>	String[] selectImports(AnnotationMetadata importingClassMetadata);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>实现ImportSelector接口，返回String[]</p>
+<ul>
+<li>ImportBeanDefinitionRegistrar<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ImportBeanDefinitionRegistrar</span> </span>&#123;<br>	<span class="hljs-comment">/**<br>	 * Register bean definitions as necessary based on the given annotation metadata of<br>	 * the importing &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@Configuration</span>&#125; class.<br>	 * &lt;p&gt;Note that &#123;<span class="hljs-doctag">@link</span> BeanDefinitionRegistryPostProcessor&#125; types may &lt;em&gt;not&lt;/em&gt; be<br>	 * registered here, due to lifecycle constraints related to &#123;<span class="hljs-doctag">@code</span> <span class="hljs-doctag">@Configuration</span>&#125;<br>	 * class processing.<br>	 * <span class="hljs-doctag">@param</span> importingClassMetadata annotation metadata of the importing class<br>	 * <span class="hljs-doctag">@param</span> registry current bean definition registry<br>	 */</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerBeanDefinitions</span><span class="hljs-params">(<br>			AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  
+<div class="reward" id="reward">
+  <p>希望在帮助到自己的同时也可以帮助你！</p>
+  <button id="reward-button" class="button" disable="enable">打赏</button>
+  <div id="qr" class="qr" style="display: none;" aria-hidden="true">
+    
+    <div id="wechat">
+      <img id="wechat_qr" src="/images/wx_ds.jpg" alt="微信支付">
+      <span>微信支付</span>
+    </div>
+    
+    
+    
+  </div>
+</div>
+
+
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2019/05/26/spring-Bean的生命周期/" rel="prev" title="spring_Bean的生命周期"><span class="nav-title">spring_Bean的生命周期</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  
+  <div id="vcomments" class="vcomments"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function () {
+    new Valine({
+      "el": "#vcomments",
+      "appId": "kRqMnbmUujwPVMH3Qqo272g2-gzGzoHsz",
+      "appKey": "vJuJTznw3VXLJwd5YYu3Q9HF",
+      "verify": "false",
+      "notify": "false",
+      "avatar": "mm",
+      "meta": ["nick", "mail", "link"],
+      "pageSize": 10,
+      "lang": "zh-cn",
+      "visitor": "false",
+      "highlight": "true",
+      "placeholder": "在这里说点什么……",
+      "avatarForce": "false"
+    });
+  });
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control">
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/blog.jpg" alt="嘤嘤怪&&🐶">
+  
+  <h1 class="author-name">嘤嘤怪&&🐶</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    
+    
+    
+    <div class="archives-count count-block">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">4</a></div>
+    </div>
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#spring源码解析之注解篇"><span class="toc-text">spring源码解析之注解篇</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#spring一个重要的技术是Ioc与DI"><span class="toc-text">spring一个重要的技术是Ioc与DI</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接<p></p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:1176924360@qq.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/cdvsdsa" target="_blank">cdvsdsa</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/u/3967811493" target="_blank">不是人民的好榜样</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">嘤嘤怪&&🐶</span><span class="year"><i class="far fa-copyright"></i>2019 - 2019</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
