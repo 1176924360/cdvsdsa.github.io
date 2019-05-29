@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-29T04:45:07.448Z</updated>
+  <updated>2019-05-29T12:46:00.327Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL学习_diay011</title>
+    <link href="http://yoursite.com/2019/05/29/MySQL%E5%AD%A6%E4%B9%A0-diay011/"/>
+    <id>http://yoursite.com/2019/05/29/MySQL学习-diay011/</id>
+    <published>2019-05-29T12:19:20.000Z</published>
+    <updated>2019-05-29T12:46:00.327Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="MySQL深入学习-01"><a href="#MySQL深入学习-01" class="headerlink" title="MySQL深入学习_01"></a>MySQL深入学习_01</h2><h3 id="常见的MySQL存储引擎"><a href="#常见的MySQL存储引擎" class="headerlink" title="常见的MySQL存储引擎"></a>常见的MySQL存储引擎</h3><p>MyISAM、InnoDB为常用的两个MySQL数据库存储引擎，其区别为：</p><a id="more"></a><table><thead><tr><th style="text-align:center">属性</th><th style="text-align:center">MyISAM</th><th style="text-align:center">InnoDB</th></tr></thead><tbody><tr><td style="text-align:center">主外键</td><td style="text-align:center">N</td><td style="text-align:center">Y</td></tr><tr><td style="text-align:center">事务</td><td style="text-align:center">N</td><td style="text-align:center">Y</td></tr><tr><td style="text-align:center">行表锁</td><td style="text-align:center">表锁</td><td style="text-align:center">行锁</td></tr><tr><td style="text-align:center">缓存</td><td style="text-align:center">只缓存索引</td><td style="text-align:center">既缓存索引也缓存真实数据</td></tr><tr><td style="text-align:center">表空间</td><td style="text-align:center">小</td><td style="text-align:center">大</td></tr><tr><td style="text-align:center">关注点</td><td style="text-align:center">性能</td><td style="text-align:center">事务</td></tr></tbody></table><h3 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h3><p>假设有一张user表，表中有id、name、email、num</p><ul><li>如果查找表的条件为name<br>建立单值索引：create index idx_user_name on user(name);</li><li>果查找表的条件为name与email<br>建立复合索引：create index idx_user_nameEmail on user(name,email);</li></ul><h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3><p>索引是帮助MySQL高效获得数据的数据结构，索引的目的在于提高查找效率。可以理解为排好序的快速查找的数据结构。在Java开发中，索引一般的数据结构为BTree。</p><h3 id="索引的优势"><a href="#索引的优势" class="headerlink" title="索引的优势"></a>索引的优势</h3><p>1.提高数据检索效率，降低数据库的IO成本<br>2.通过索引对数据进行排序，降低数据排序成本，降低CPU的消耗</p><h3 id="需要建立索引的列"><a href="#需要建立索引的列" class="headerlink" title="需要建立索引的列"></a>需要建立索引的列</h3><p>1.主建会建立的为唯一索引<br>2.频繁作为查询条件的字段<br>3.外键关系<br>4.查询中排序的字段<br>5.查询中统计或分组的字段</p><h3 id="不需要建立索引的列"><a href="#不需要建立索引的列" class="headerlink" title="不需要建立索引的列"></a>不需要建立索引的列</h3><p>1.频繁更新的字段<br>2.where条件用不到的字段<br>3.表记录太少(小于300万条数据)<br>4.数据重复且分布平均的字段</p><h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>使用explain + SQL语句，可以对查询语句进行性能分析<br>具体的分析还在学习与整理，需要明天更新</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;MySQL深入学习-01&quot;&gt;&lt;a href=&quot;#MySQL深入学习-01&quot; class=&quot;headerlink&quot; title=&quot;MySQL深入学习_01&quot;&gt;&lt;/a&gt;MySQL深入学习_01&lt;/h2&gt;&lt;h3 id=&quot;常见的MySQL存储引擎&quot;&gt;&lt;a href=&quot;#常见的MySQL存储引擎&quot; class=&quot;headerlink&quot; title=&quot;常见的MySQL存储引擎&quot;&gt;&lt;/a&gt;常见的MySQL存储引擎&lt;/h3&gt;&lt;p&gt;MyISAM、InnoDB为常用的两个MySQL数据库存储引擎，其区别为：&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>spring_aop</title>
