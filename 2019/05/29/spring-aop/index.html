@@ -89,7 +89,7 @@
       if (els.length) {
         // Enabled Hexo highlight line number.
         $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
+          $(e).before("<button class=\"copy button\">Copy</button>");
         });
         cb = new ClipboardJS("button.copy", {
           "target": function (trigger) {
@@ -105,7 +105,7 @@
         els = $(".post pre code");
         $(els).each(function (i, e) {
           // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
+          $(e).parent().before("<button class=\"copy button\">Copy</button>");
         });
         cb = new ClipboardJS("button.copy", {
           "target": function (trigger) {
@@ -121,11 +121,11 @@
         e.clearSelection();
         var trigger = e.trigger;
         // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
+        trigger.innerHTML = "Copied";
         $(trigger).addClass("copied");
         // Change button text back;
         setTimeout(function () {
-          trigger.innerHTML = "复制";
+          trigger.innerHTML = "Copy";
           $(trigger).removeClass("copied");
         }, 1500);
       });
@@ -151,12 +151,12 @@
       
     </div>
     <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
       <ul id="menu" role="menubar" aria-hidden="false">
         
-        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
         
-        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">归档</span></a></li>
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
         
       </ul>
     </nav>
@@ -225,12 +225,12 @@
   
 <div class="reward" id="reward">
   <p>希望在帮助到自己的同时也可以帮助你！</p>
-  <button id="reward-button" class="button" disable="enable">打赏</button>
+  <button id="reward-button" class="button" disable="enable">Reward</button>
   <div id="qr" class="qr" style="display: none;" aria-hidden="true">
     
     <div id="wechat">
-      <img id="wechat_qr" src="/images/wx_ds.jpg" alt="微信支付">
-      <span>微信支付</span>
+      <img id="wechat_qr" src="/images/wx_ds.jpg" alt="WechatPay">
+      <span>WechatPay</span>
     </div>
     
     
@@ -277,7 +277,7 @@
       "lang": "zh-cn",
       "visitor": "false",
       "highlight": "true",
-      "placeholder": "在这里说点什么……",
+      "placeholder": "Write your comment here……",
       "avatarForce": "false"
     });
   });
@@ -299,7 +299,7 @@
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control">
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -317,7 +317,7 @@
     
     
     <div class="archives-count count-block">
-      <div class="site-count-title">归档</div>
+      <div class="site-count-title">Archives</div>
       <div><a href="/archives/">7</a></div>
     </div>
     
@@ -339,7 +339,7 @@
     
     <hr>
     <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
       <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#SpringAop的学习"><span class="toc-text">SpringAop的学习</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#什么是aop"><span class="toc-text">什么是aop</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#aop编程步骤"><span class="toc-text">aop编程步骤</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#1-在maven工程中导入aspects依赖"><span class="toc-text">1.在maven工程中导入aspects依赖</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#2-定义一个业务逻辑类"><span class="toc-text">2.定义一个业务逻辑类</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#3-定义切面类"><span class="toc-text">3.定义切面类</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#4-给切面类目标方法标注何时何地运行"><span class="toc-text">4.给切面类目标方法标注何时何地运行</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#5-将切面类与业务逻辑类加入到容器中"><span class="toc-text">5.将切面类与业务逻辑类加入到容器中</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#6-需告知spring哪个类是切面类"><span class="toc-text">6.需告知spring哪个类是切面类</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#7-在配置类中加入开启切面自动代理注解"><span class="toc-text">7.在配置类中加入开启切面自动代理注解</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#8-测试代码"><span class="toc-text">8.测试代码</span></a></li></ol></li></ol></li></ol></div>
     </div>
     
@@ -347,7 +347,7 @@
     
     <hr>
     <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接<p></p></div>
+      <div><i class="far fa-address-card"></i>Social Links<p></p></div>
       <ul>
         
         <li><i class="fas fa-envelope"></i><a href="mailto:1176924360@qq.com" target="_blank">E-Mail</a></li>
@@ -362,7 +362,7 @@
     
     <hr>
     <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
+      <div><i class="fas fa-link"></i>Blogroll</div>
       <ul>
         
         <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
@@ -386,7 +386,7 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
@@ -395,7 +395,7 @@
         </div>
         
         <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
         </div>
         
       </div>
@@ -406,7 +406,7 @@
           
         </div>
         <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
         </div>
       </div>
     </div>
