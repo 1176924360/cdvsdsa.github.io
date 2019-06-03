@@ -133,7 +133,7 @@
     </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>MySQL学习_diay01 | Hexo</title>
+    <title>spring_事务 | Hexo</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="default" data-spy="scroll" data-target=".list-group">
     
@@ -173,7 +173,7 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/MySQL学习-diay011/">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/spring-事务/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
        <meta itemprop="name" content="嘤嘤怪&&🐶">
        <meta itemprop="description" content>
@@ -184,11 +184,11 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">MySQL学习_diay01</h1>
+      <h1 class="post-title" itemprop="name headline">spring_事务</h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-29T20:19:20+08:00">2019-05-29 20:19:20</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-31T12:33:46+08:00">2019-05-31 12:33:46</time></span>
         </span>
         
         
@@ -198,59 +198,27 @@
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      <h2 id="MySQL深入学习-01"><a href="#MySQL深入学习-01" class="headerlink" title="MySQL深入学习_01"></a>MySQL深入学习_01</h2><h3 id="常见的MySQL存储引擎"><a href="#常见的MySQL存储引擎" class="headerlink" title="常见的MySQL存储引擎"></a>常见的MySQL存储引擎</h3><p>MyISAM、InnoDB为常用的两个MySQL数据库存储引擎，其区别为：</p>
-<a id="more"></a>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th style="text-align:center">MyISAM</th>
-<th style="text-align:center">InnoDB</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">主外键</td>
-<td style="text-align:center">N</td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">事务</td>
-<td style="text-align:center">N</td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">行表锁</td>
-<td style="text-align:center">表锁</td>
-<td style="text-align:center">行锁</td>
-</tr>
-<tr>
-<td style="text-align:center">缓存</td>
-<td style="text-align:center">只缓存索引</td>
-<td style="text-align:center">既缓存索引也缓存真实数据</td>
-</tr>
-<tr>
-<td style="text-align:center">表空间</td>
-<td style="text-align:center">小</td>
-<td style="text-align:center">大</td>
-</tr>
-<tr>
-<td style="text-align:center">关注点</td>
-<td style="text-align:center">性能</td>
-<td style="text-align:center">事务</td>
-</tr>
-</tbody>
-</table>
-<h3 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h3><p>假设有一张user表，表中有id、name、email、num</p>
+      <h2 id="spring事务的总结"><a href="#spring事务的总结" class="headerlink" title="spring事务的总结"></a>spring事务的总结</h2><h3 id="事务的环境依赖"><a href="#事务的环境依赖" class="headerlink" title="事务的环境依赖"></a>事务的环境依赖</h3><p>在maven中导入spring-aspects、spring-jdbc、mysql-connector-java、c3p0的依赖<br>mysql-connector-java 8.0以上版本的注意：</p>
 <ul>
-<li>如果查找表的条件为name<br>建立单值索引：create index idx_user_name on user(name);</li>
-<li>果查找表的条件为name与email<br>建立复合索引：create index idx_user_nameEmail on user(name,email);</li>
+<li>DriverClass不在是com.mysql.jdbc.Driver，而是com.mysql.cj.jdbc.Driver</li>
+<li>JdbcUrl除了需要指定具体的库外，还需要加入?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true<br>如果没有符合以上的要求，会报错</li>
 </ul>
-<h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3><p>索引是帮助MySQL高效获得数据的数据结构，索引的目的在于提高查找效率。可以理解为排好序的快速查找的数据结构。在Java开发中，索引一般的数据结构为BTree。</p>
-<h3 id="索引的优势"><a href="#索引的优势" class="headerlink" title="索引的优势"></a>索引的优势</h3><p>1.提高数据检索效率，降低数据库的IO成本<br>2.通过索引对数据进行排序，降低数据排序成本，降低CPU的消耗</p>
-<h3 id="需要建立索引的列"><a href="#需要建立索引的列" class="headerlink" title="需要建立索引的列"></a>需要建立索引的列</h3><p>1.主建会建立的为唯一索引<br>2.频繁作为查询条件的字段<br>3.外键关系<br>4.查询中排序的字段<br>5.查询中统计或分组的字段</p>
-<h3 id="不需要建立索引的列"><a href="#不需要建立索引的列" class="headerlink" title="不需要建立索引的列"></a>不需要建立索引的列</h3><p>1.频繁更新的字段<br>2.where条件用不到的字段<br>3.表记录太少(小于300万条数据)<br>4.数据重复且分布平均的字段</p>
-<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>使用explain + SQL语句，可以对查询语句进行性能分析<br>具体的分析还在学习与整理，需要明天更新</p>
+<p><img src="/2019/05/31/spring-事务/QQ截图20190531124243.png" alt="报错信息"></p>
+<p>即会报无法打开JDBC连接的错误</p>
+<a id="more"></a>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TxConfig</span> </span>&#123;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;db.username&#125;"</span>)<br>    <span class="hljs-keyword">private</span> String username;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;db.password&#125;"</span>)<br>    <span class="hljs-keyword">private</span> String password;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;db.driver&#125;"</span>)<br>    <span class="hljs-keyword">private</span> String driver;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">dataSource</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> PropertyVetoException </span>&#123;<br>        ComboPooledDataSource dataSource = <span class="hljs-keyword">new</span> ComboPooledDataSource();<br>        dataSource.setUser(username);<br>        dataSource.setPassword(password);<br>        dataSource.setDriverClass(driver);<br>        dataSource.setJdbcUrl(<span class="hljs-string">"jdbc:mysql://localhost:3306/ee19day01?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true"</span>);<br>        <span class="hljs-keyword">return</span> dataSource;<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> JdbcTemplate <span class="hljs-title">jdbcTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> PropertyVetoException </span>&#123;<br>        JdbcTemplate jdbcTemplate = <span class="hljs-keyword">new</span> JdbcTemplate(dataSource());<br>        <span class="hljs-keyword">return</span> jdbcTemplate;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties">db.username = root<br>db.password = 123<br>db.driver = com.mysql.cj.jdbc.Driver<br></code></pre></td></tr></table></figure>
+<h3 id="注解事务"><a href="#注解事务" class="headerlink" title="注解事务"></a>注解事务</h3><p>在需要事务支持的类上表上事务的注解，@Transactional，之后需要在配置类上注解@EnableTransactionManagement，这个注解是用来打开注解事务的。最后需要注册PlatformTransactionManager组件到容器中。</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TxService</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> TxDao txDao;<br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertService</span><span class="hljs-params">()</span></span>&#123;<br>        txDao.insert();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Repository</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TxDao</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> JdbcTemplate jdbcTemplate;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">()</span></span>&#123;<br>        String sql = <span class="hljs-string">"INSERT INTO t_user(name, password) VALUES(?, ?)"</span>;<br>        String name = UUID.randomUUID().toString().substring(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>);<br>        String psw = UUID.randomUUID().toString().substring(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>);<br>        jdbcTemplate.update(sql, name, psw);<br>        System.out.println(<span class="hljs-string">"插入数据"</span>);<br><span class="hljs-comment">//        int i = 1/0;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableTransactionManagement</span><br><span class="hljs-meta">@ComponentScan</span>(<span class="hljs-string">"cn.hdu.tx"</span>)<br><span class="hljs-meta">@PropertySource</span>(<span class="hljs-string">"classpath:/db.properties"</span>)<br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TxConfig</span> </span>&#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> PlatformTransactionManager <span class="hljs-title">platformTransactionManager</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> PropertyVetoException </span>&#123;<br>        DataSourceTransactionManager transactionManager = <span class="hljs-keyword">new</span> DataSourceTransactionManager(dataSource());<br>        <span class="hljs-keyword">return</span> transactionManager;<br>    &#125;    <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果spring中没有注册PlatformTransactionManager组件，会报错<br><img src="/2019/05/31/spring-事务/QQ截图20190531130539.png" alt="报错信息"></p>
+<p>报错信息显示没有定义PlatformTransactionManager组件到Bean中</p>
+<h3 id="测试程序"><a href="#测试程序" class="headerlink" title="测试程序"></a>测试程序</h3><p><img src="/2019/05/31/spring-事务/QQ截图20190531125622.png" alt="数据库原始表"><br>从表中看到最后一条记录的id是15<br>当再执行一遍插入程序后：</p>
+<p><img src="/2019/05/31/spring-事务/QQ截图20190531125817.png" alt="数据库插入数据"><br>可以发现数据库多了一条数据</p>
+<p>当在dao层出现错误时，这里将在dao层加入int i = 1/0程序，执行程序的结果为：</p>
+<p><img src="/2019/05/31/spring-事务/QQ截图20190531130030.png" alt="数据库插入数据时有错误"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这样子便实现了事务的功能，当进行事务时有错误时，事务将进行回滚。</p>
 
     </main>
     <footer class="post-footer">
@@ -280,12 +248,12 @@
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
       
-      <a href="/2019/05/29/spring-aop/" rel="next" title="spring_aop"><i class="fas fa-angle-left"></i><span class="nav-title">spring_aop</span></a>
+      <a href="/2019/05/29/MySQL学习-diay011/" rel="next" title="MySQL学习_diay01"><i class="fas fa-angle-left"></i><span class="nav-title">MySQL学习_diay01</span></a>
       
     </div>
     <div class="page-nav-prev page-nav-item">
       
-      <a href="/2019/05/31/spring-事务/" rel="prev" title="spring_事务"><span class="nav-title">spring_事务</span><i class="fas fa-angle-right"></i></a>
+      <a href="/2019/06/03/MySQL-学习day02/" rel="prev" title="MySQL_学习day02"><span class="nav-title">MySQL_学习day02</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </nav>
@@ -376,7 +344,7 @@
     <hr>
     <div class="post-toc sidebar-item" id="toc-div">
       <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#MySQL深入学习-01"><span class="toc-text">MySQL深入学习_01</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#常见的MySQL存储引擎"><span class="toc-text">常见的MySQL存储引擎</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#建立索引"><span class="toc-text">建立索引</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#什么是索引"><span class="toc-text">什么是索引</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#索引的优势"><span class="toc-text">索引的优势</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#需要建立索引的列"><span class="toc-text">需要建立索引的列</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#不需要建立索引的列"><span class="toc-text">不需要建立索引的列</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#性能分析"><span class="toc-text">性能分析</span></a></li></ol></li></ol></div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#spring事务的总结"><span class="toc-text">spring事务的总结</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#事务的环境依赖"><span class="toc-text">事务的环境依赖</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#注解事务"><span class="toc-text">注解事务</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#测试程序"><span class="toc-text">测试程序</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol></div>
     </div>
     
     

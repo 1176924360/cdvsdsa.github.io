@@ -89,7 +89,7 @@
       if (els.length) {
         // Enabled Hexo highlight line number.
         $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">Copy</button>");
+          $(e).before("<button class=\"copy button\">复制</button>");
         });
         cb = new ClipboardJS("button.copy", {
           "target": function (trigger) {
@@ -105,7 +105,7 @@
         els = $(".post pre code");
         $(els).each(function (i, e) {
           // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">Copy</button>");
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
         });
         cb = new ClipboardJS("button.copy", {
           "target": function (trigger) {
@@ -121,11 +121,11 @@
         e.clearSelection();
         var trigger = e.trigger;
         // Change button text as a user tip.
-        trigger.innerHTML = "Copied";
+        trigger.innerHTML = "已复制";
         $(trigger).addClass("copied");
         // Change button text back;
         setTimeout(function () {
-          trigger.innerHTML = "Copy";
+          trigger.innerHTML = "复制";
           $(trigger).removeClass("copied");
         }, 1500);
       });
@@ -151,12 +151,12 @@
       
     </div>
     <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
       <ul id="menu" role="menubar" aria-hidden="false">
         
-        <li role="menuitem"><a href="/" class="current"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
+        <li role="menuitem"><a href="/" class="current"><i class="fas fa-home"></i><span class="menu-text">首页</span></a></li>
         
-        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
+        <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">归档</span></a></li>
         
       </ul>
     </nav>
@@ -171,6 +171,128 @@
             
 
 <div id="index" class="index page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/MySQL-学习day02/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="嘤嘤怪&&🐶">
+        <meta itemprop="description" content>
+        <meta itemprop="image" content="/images/blog.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Hexo">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/06/03/MySQL-学习day02/" itemprop="url">MySQL_学习day02</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-03T19:20:06+08:00">2019-06-03 19:20:06</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h2 id="MySQL之explain解读"><a href="#MySQL之explain解读" class="headerlink" title="MySQL之explain解读"></a>MySQL之explain解读</h2><h3 id="explain如何使用"><a href="#explain如何使用" class="headerlink" title="explain如何使用"></a>explain如何使用</h3><p>explain + SQL语句<br>eg：EXPLAIN SELECT * FROM stuinfo;</p>
+<p><img src="/2019/06/03/MySQL-学习day02/QQ截图20190603193328.png" alt="结果"></p>
+<h3 id="explain能干什么"><a href="#explain能干什么" class="headerlink" title="explain能干什么"></a>explain能干什么</h3><p>可以对SQL语句进行性能分析</p>
+<ul>
+<li>表的读取顺序</li>
+<li>数据读取操作的操作类型</li>
+<li>哪些索引可以使用</li>
+<li>哪些索引被实际石英</li>
+<li>表之间的引用</li>
+<li>每张表有多少行被优化器查询</li>
+</ul>
+<h3 id="结果每列分析"><a href="#结果每列分析" class="headerlink" title="结果每列分析"></a>结果每列分析</h3><h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>1.id相同，执行顺序由上至下<br>2.id不同，如果是子查询，id会递增，id值越大优先级越高，越先被执行<br>由此可知：id如果相同，可以认为是一组，从上往下顺序执行，在所有组中，id值越大，优先级越高，越先执行</p>
+<h4 id="select-type"><a href="#select-type" class="headerlink" title="select_type"></a>select_type</h4><p>这一列有6个属性</p>
+<ol>
+<li>simple：简单查询</li>
+<li>primary：最外层</li>
+<li>subquery：子查询</li>
+<li>derived：衍生</li>
+<li>union：联合，第二个select出现在union后</li>
+<li>result：从union表获取的select结果</li>
+</ol>
+<h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>查找的表名</p>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>type用来评价SQL语句的性能好坏，有8个属性ALL、index、range、ref、eq_ref、const、system、NULL<br>性能从好到坏的排序：system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</p>
+<ul>
+<li>system：表中只有一行记录</li>
+<li>const：通过索引一次就找到</li>
+<li>eq_ref：唯一性索引扫描，对每个索引键，表中只有一条记录与之匹配</li>
+<li>ref：非唯一性索引扫描，返回匹配某个单独值的所有行</li>
+<li>range：只检索给的范围的行，使用一个索引选择行，一般为where后面出现的between、&lt;、&gt;、in</li>
+<li>indes：全索引扫描</li>
+<li>all：全表扫描</li>
+</ul>
+<h4 id="possible-keys、key、key-len"><a href="#possible-keys、key、key-len" class="headerlink" title="possible_keys、key、key_len"></a>possible_keys、key、key_len</h4><p>possible_keys：显示可能应用到这张表的索引，一个或多个，查询涉及到的字段上若存在索引，则索引被列出，但不一定被查询实际使用<br>key：实际被使用的索引，若果为null，则没有用到索引，查询中若使用了覆盖索引，则该索引仅出现在key列表中<br>key_len：表示所有中使用的字节数，可以通过该列计算查询中使用的索引长度</p>
+<h4 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h4><p>显示索引的哪一列被使用了，如果可能的话是一个常数</p>
+<h4 id="rows"><a href="#rows" class="headerlink" title="rows"></a>rows</h4><p>根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数</p>
+<h4 id="extra"><a href="#extra" class="headerlink" title="extra"></a>extra</h4><ol>
+<li>Using filesort：文件排序</li>
+<li>Using temporary：使用临时表保存中间的结果</li>
+<li>Using index：表示相应的select操作中使用了覆盖索引，避免了访问表的数据行</li>
+</ol>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/spring-事务/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="嘤嘤怪&&🐶">
+        <meta itemprop="description" content>
+        <meta itemprop="image" content="/images/blog.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Hexo">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/31/spring-事务/" itemprop="url">spring_事务</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-31T12:33:46+08:00">2019-05-31 12:33:46</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h2 id="spring事务的总结"><a href="#spring事务的总结" class="headerlink" title="spring事务的总结"></a>spring事务的总结</h2><h3 id="事务的环境依赖"><a href="#事务的环境依赖" class="headerlink" title="事务的环境依赖"></a>事务的环境依赖</h3><p>在maven中导入spring-aspects、spring-jdbc、mysql-connector-java、c3p0的依赖<br>mysql-connector-java 8.0以上版本的注意：</p>
+<ul>
+<li>DriverClass不在是com.mysql.jdbc.Driver，而是com.mysql.cj.jdbc.Driver</li>
+<li>JdbcUrl除了需要指定具体的库外，还需要加入?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true<br>如果没有符合以上的要求，会报错</li>
+</ul>
+<p><img src="/2019/05/31/spring-事务/QQ截图20190531124243.png" alt="报错信息"></p>
+<p>即会报无法打开JDBC连接的错误</p>
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
@@ -390,7 +512,7 @@
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="Search" class="form-control">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control">
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -408,8 +530,8 @@
     
     
     <div class="archives-count count-block">
-      <div class="site-count-title">Archives</div>
-      <div><a href="/archives/">5</a></div>
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">7</a></div>
     </div>
     
     
@@ -427,7 +549,7 @@
     
     <hr>
     <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>Social Links<p></p></div>
+      <div><i class="far fa-address-card"></i>社交链接<p></p></div>
       <ul>
         
         <li><i class="fas fa-envelope"></i><a href="mailto:1176924360@qq.com" target="_blank">E-Mail</a></li>
@@ -442,7 +564,7 @@
     
     <hr>
     <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>Blogroll</div>
+      <div><i class="fas fa-link"></i>友情链接</div>
       <ul>
         
         <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
@@ -466,7 +588,7 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="Back to Top"></i></button>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
@@ -475,7 +597,7 @@
         </div>
         
         <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="Site Visit Count" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="Site User Count" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="Page Click Count" aria-hidden="false"></span></span>
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
         </div>
         
       </div>
@@ -486,7 +608,7 @@
           
         </div>
         <div class="powered-by">
-          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
         </div>
       </div>
     </div>

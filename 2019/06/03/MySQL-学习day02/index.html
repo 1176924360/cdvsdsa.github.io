@@ -133,7 +133,7 @@
     </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>MySQL学习_diay01 | Hexo</title>
+    <title>MySQL_学习day02 | Hexo</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="default" data-spy="scroll" data-target=".list-group">
     
@@ -173,7 +173,7 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/MySQL学习-diay011/">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/MySQL-学习day02/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
        <meta itemprop="name" content="嘤嘤怪&&🐶">
        <meta itemprop="description" content>
@@ -184,11 +184,11 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">MySQL学习_diay01</h1>
+      <h1 class="post-title" itemprop="name headline">MySQL_学习day02</h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-29T20:19:20+08:00">2019-05-29 20:19:20</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-03T19:20:06+08:00">2019-06-03 19:20:06</time></span>
         </span>
         
         
@@ -198,59 +198,46 @@
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      <h2 id="MySQL深入学习-01"><a href="#MySQL深入学习-01" class="headerlink" title="MySQL深入学习_01"></a>MySQL深入学习_01</h2><h3 id="常见的MySQL存储引擎"><a href="#常见的MySQL存储引擎" class="headerlink" title="常见的MySQL存储引擎"></a>常见的MySQL存储引擎</h3><p>MyISAM、InnoDB为常用的两个MySQL数据库存储引擎，其区别为：</p>
-<a id="more"></a>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th style="text-align:center">MyISAM</th>
-<th style="text-align:center">InnoDB</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">主外键</td>
-<td style="text-align:center">N</td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">事务</td>
-<td style="text-align:center">N</td>
-<td style="text-align:center">Y</td>
-</tr>
-<tr>
-<td style="text-align:center">行表锁</td>
-<td style="text-align:center">表锁</td>
-<td style="text-align:center">行锁</td>
-</tr>
-<tr>
-<td style="text-align:center">缓存</td>
-<td style="text-align:center">只缓存索引</td>
-<td style="text-align:center">既缓存索引也缓存真实数据</td>
-</tr>
-<tr>
-<td style="text-align:center">表空间</td>
-<td style="text-align:center">小</td>
-<td style="text-align:center">大</td>
-</tr>
-<tr>
-<td style="text-align:center">关注点</td>
-<td style="text-align:center">性能</td>
-<td style="text-align:center">事务</td>
-</tr>
-</tbody>
-</table>
-<h3 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h3><p>假设有一张user表，表中有id、name、email、num</p>
+      <h2 id="MySQL之explain解读"><a href="#MySQL之explain解读" class="headerlink" title="MySQL之explain解读"></a>MySQL之explain解读</h2><h3 id="explain如何使用"><a href="#explain如何使用" class="headerlink" title="explain如何使用"></a>explain如何使用</h3><p>explain + SQL语句<br>eg：EXPLAIN SELECT * FROM stuinfo;</p>
+<p><img src="/2019/06/03/MySQL-学习day02/QQ截图20190603193328.png" alt="结果"></p>
+<h3 id="explain能干什么"><a href="#explain能干什么" class="headerlink" title="explain能干什么"></a>explain能干什么</h3><p>可以对SQL语句进行性能分析</p>
 <ul>
-<li>如果查找表的条件为name<br>建立单值索引：create index idx_user_name on user(name);</li>
-<li>果查找表的条件为name与email<br>建立复合索引：create index idx_user_nameEmail on user(name,email);</li>
+<li>表的读取顺序</li>
+<li>数据读取操作的操作类型</li>
+<li>哪些索引可以使用</li>
+<li>哪些索引被实际石英</li>
+<li>表之间的引用</li>
+<li>每张表有多少行被优化器查询</li>
 </ul>
-<h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3><p>索引是帮助MySQL高效获得数据的数据结构，索引的目的在于提高查找效率。可以理解为排好序的快速查找的数据结构。在Java开发中，索引一般的数据结构为BTree。</p>
-<h3 id="索引的优势"><a href="#索引的优势" class="headerlink" title="索引的优势"></a>索引的优势</h3><p>1.提高数据检索效率，降低数据库的IO成本<br>2.通过索引对数据进行排序，降低数据排序成本，降低CPU的消耗</p>
-<h3 id="需要建立索引的列"><a href="#需要建立索引的列" class="headerlink" title="需要建立索引的列"></a>需要建立索引的列</h3><p>1.主建会建立的为唯一索引<br>2.频繁作为查询条件的字段<br>3.外键关系<br>4.查询中排序的字段<br>5.查询中统计或分组的字段</p>
-<h3 id="不需要建立索引的列"><a href="#不需要建立索引的列" class="headerlink" title="不需要建立索引的列"></a>不需要建立索引的列</h3><p>1.频繁更新的字段<br>2.where条件用不到的字段<br>3.表记录太少(小于300万条数据)<br>4.数据重复且分布平均的字段</p>
-<h3 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h3><p>使用explain + SQL语句，可以对查询语句进行性能分析<br>具体的分析还在学习与整理，需要明天更新</p>
+<h3 id="结果每列分析"><a href="#结果每列分析" class="headerlink" title="结果每列分析"></a>结果每列分析</h3><h4 id="id"><a href="#id" class="headerlink" title="id"></a>id</h4><p>1.id相同，执行顺序由上至下<br>2.id不同，如果是子查询，id会递增，id值越大优先级越高，越先被执行<br>由此可知：id如果相同，可以认为是一组，从上往下顺序执行，在所有组中，id值越大，优先级越高，越先执行</p>
+<h4 id="select-type"><a href="#select-type" class="headerlink" title="select_type"></a>select_type</h4><p>这一列有6个属性</p>
+<ol>
+<li>simple：简单查询</li>
+<li>primary：最外层</li>
+<li>subquery：子查询</li>
+<li>derived：衍生</li>
+<li>union：联合，第二个select出现在union后</li>
+<li>result：从union表获取的select结果</li>
+</ol>
+<h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>查找的表名</p>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>type用来评价SQL语句的性能好坏，有8个属性ALL、index、range、ref、eq_ref、const、system、NULL<br>性能从好到坏的排序：system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</p>
+<ul>
+<li>system：表中只有一行记录</li>
+<li>const：通过索引一次就找到</li>
+<li>eq_ref：唯一性索引扫描，对每个索引键，表中只有一条记录与之匹配</li>
+<li>ref：非唯一性索引扫描，返回匹配某个单独值的所有行</li>
+<li>range：只检索给的范围的行，使用一个索引选择行，一般为where后面出现的between、&lt;、&gt;、in</li>
+<li>indes：全索引扫描</li>
+<li>all：全表扫描</li>
+</ul>
+<h4 id="possible-keys、key、key-len"><a href="#possible-keys、key、key-len" class="headerlink" title="possible_keys、key、key_len"></a>possible_keys、key、key_len</h4><p>possible_keys：显示可能应用到这张表的索引，一个或多个，查询涉及到的字段上若存在索引，则索引被列出，但不一定被查询实际使用<br>key：实际被使用的索引，若果为null，则没有用到索引，查询中若使用了覆盖索引，则该索引仅出现在key列表中<br>key_len：表示所有中使用的字节数，可以通过该列计算查询中使用的索引长度</p>
+<h4 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h4><p>显示索引的哪一列被使用了，如果可能的话是一个常数</p>
+<h4 id="rows"><a href="#rows" class="headerlink" title="rows"></a>rows</h4><p>根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数</p>
+<h4 id="extra"><a href="#extra" class="headerlink" title="extra"></a>extra</h4><ol>
+<li>Using filesort：文件排序</li>
+<li>Using temporary：使用临时表保存中间的结果</li>
+<li>Using index：表示相应的select操作中使用了覆盖索引，避免了访问表的数据行</li>
+</ol>
 
     </main>
     <footer class="post-footer">
@@ -280,12 +267,10 @@
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
       
-      <a href="/2019/05/29/spring-aop/" rel="next" title="spring_aop"><i class="fas fa-angle-left"></i><span class="nav-title">spring_aop</span></a>
+      <a href="/2019/05/31/spring-事务/" rel="next" title="spring_事务"><i class="fas fa-angle-left"></i><span class="nav-title">spring_事务</span></a>
       
     </div>
     <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2019/05/31/spring-事务/" rel="prev" title="spring_事务"><span class="nav-title">spring_事务</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </nav>
@@ -376,7 +361,7 @@
     <hr>
     <div class="post-toc sidebar-item" id="toc-div">
       <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#MySQL深入学习-01"><span class="toc-text">MySQL深入学习_01</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#常见的MySQL存储引擎"><span class="toc-text">常见的MySQL存储引擎</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#建立索引"><span class="toc-text">建立索引</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#什么是索引"><span class="toc-text">什么是索引</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#索引的优势"><span class="toc-text">索引的优势</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#需要建立索引的列"><span class="toc-text">需要建立索引的列</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#不需要建立索引的列"><span class="toc-text">不需要建立索引的列</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#性能分析"><span class="toc-text">性能分析</span></a></li></ol></li></ol></div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#MySQL之explain解读"><span class="toc-text">MySQL之explain解读</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#explain如何使用"><span class="toc-text">explain如何使用</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#explain能干什么"><span class="toc-text">explain能干什么</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#结果每列分析"><span class="toc-text">结果每列分析</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#id"><span class="toc-text">id</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#select-type"><span class="toc-text">select_type</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#table"><span class="toc-text">table</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#type"><span class="toc-text">type</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#possible-keys、key、key-len"><span class="toc-text">possible_keys、key、key_len</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#ref"><span class="toc-text">ref</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#rows"><span class="toc-text">rows</span></a></li><li class="toc-item toc-level-4"><a class="list-group-item toc-link" href="#extra"><span class="toc-text">extra</span></a></li></ol></li></ol></li></ol></div>
     </div>
     
     
