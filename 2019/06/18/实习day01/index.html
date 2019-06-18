@@ -133,7 +133,7 @@
     </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>Hexo</title>
+    <title>实习day01 | Hexo</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="default" data-spy="scroll" data-target=".list-group">
     
@@ -154,7 +154,7 @@
       <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="Toggle Navbar"></i></a>
       <ul id="menu" role="menubar" aria-hidden="false">
         
-        <li role="menuitem"><a href="/" class="current"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
+        <li role="menuitem"><a href="/"><i class="fas fa-home"></i><span class="menu-text">Home</span></a></li>
         
         <li role="menuitem"><a href="/archives/"><i class="fas fa-archive"></i><span class="menu-text">Archives</span></a></li>
         
@@ -169,25 +169,22 @@
         <div class="main-container">
           <div class="content">
             
-
-<div id="index" class="index page">
+<div id="post" class="page">
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/实习day01/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
+       <meta itemprop="name" content="嘤嘤怪&&🐶">
+       <meta itemprop="description" content>
+       <meta itemprop="image" content="/images/blog.jpg">
       </span>
       <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
+       <meta itemprop="name" content="Hexo">
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/06/18/实习day01/" itemprop="url">实习day01</a>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">实习day01</h1>
       <div class="post-meta">
         
         <span class="post-date">
@@ -201,7 +198,6 @@
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      
       <h2 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h2><p>ok，接下来都是实习的环节了</p>
 <p>第一天，嗯，居然第一个到公司的</p>
 <p>然后下午要求写一个springboot的简单增删改查，ok，撸起袖子干。</p>
@@ -240,377 +236,70 @@
 <p><img src="/2019/06/18/实习day01/QQ截图20190618114415.png" alt="添加效果"><br><img src="/2019/06/18/实习day01/QQ截图20190618114429.png" alt="添加效果"></p>
 <p>修改id为11的people<br><img src="/2019/06/18/实习day01/QQ截图20190618114604.png" alt="修改效果"><br><img src="/2019/06/18/实习day01/QQ截图20190618114621.png" alt="修改效果"></p>
 
-      
     </main>
     <footer class="post-footer">
       
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/MySQL-学习day04/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
+  
+<div class="reward" id="reward">
+  <p>希望在帮助到自己的同时也可以帮助你！</p>
+  <button id="reward-button" class="button" disable="enable">Reward</button>
+  <div id="qr" class="qr" style="display: none;" aria-hidden="true">
+    
+    <div id="wechat">
+      <img id="wechat_qr" src="/images/wx_ds.jpg" alt="WechatPay">
+      <span>WechatPay</span>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/06/10/MySQL-学习day04/" itemprop="url">MySQL_学习day04</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-10T10:17:42+08:00">2019-06-10 10:17:42</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="MySQL查询优化"><a href="#MySQL查询优化" class="headerlink" title="MySQL查询优化"></a>MySQL查询优化</h2><h3 id="in与exists"><a href="#in与exists" class="headerlink" title="in与exists"></a>in与exists</h3><p>永远小表驱动大表，类似嵌套循环Nested Loop，即小的数据集驱动大的数据集(RBO原理)</p>
-<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from A where id in(select id from B);<br></code></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">for select id from B<br>		for select * from A where A.id = B.id;<br></code></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
+    
+    
+    
+  </div>
+</div>
+
+
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/MySQL-学习day03/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/06/10/MySQL-学习day04/" rel="next" title="MySQL_学习day04"><i class="fas fa-angle-left"></i><span class="nav-title">MySQL_学习day04</span></a>
+      
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/06/04/MySQL-学习day03/" itemprop="url">MySQL_学习day03</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-04T19:23:04+08:00">2019-06-04 19:23:04</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
+    <div class="page-nav-prev page-nav-item">
       
-      <h2 id="MySQL之索引优化"><a href="#MySQL之索引优化" class="headerlink" title="MySQL之索引优化"></a>MySQL之索引优化</h2><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="单表"><a href="#单表" class="headerlink" title="单表"></a>单表</h4><p>首先建一张表，并插入数据</p>
-<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE IF NOT EXISTS `article`(<br>id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,<br>author_id INT(10) UNSIGNED NOT NULL,<br>category_id INT(10) UNSIGNED NOT NULL,<br>views INT(10) UNSIGNED NOT NULL,<br>comments INT(10) UNSIGNED NOT NULL,<br>title VARBINARY(255) NOT NULL,<br>content TEXT NOT NULL);<br></code></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/MySQL-学习day02/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/06/03/MySQL-学习day02/" itemprop="url">MySQL_学习day02</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-03T19:20:06+08:00">2019-06-03 19:20:06</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="MySQL之explain解读"><a href="#MySQL之explain解读" class="headerlink" title="MySQL之explain解读"></a>MySQL之explain解读</h2><h3 id="explain如何使用"><a href="#explain如何使用" class="headerlink" title="explain如何使用"></a>explain如何使用</h3><p>explain + SQL语句<br>eg：EXPLAIN SELECT * FROM stuinfo;</p>
-<p><img src="/2019/06/03/MySQL-学习day02/QQ截图20190603193328.png" alt="结果"></p>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/spring-事务/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/31/spring-事务/" itemprop="url">spring_事务</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-31T12:33:46+08:00">2019-05-31 12:33:46</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="spring事务的总结"><a href="#spring事务的总结" class="headerlink" title="spring事务的总结"></a>spring事务的总结</h2><h3 id="事务的环境依赖"><a href="#事务的环境依赖" class="headerlink" title="事务的环境依赖"></a>事务的环境依赖</h3><p>在maven中导入spring-aspects、spring-jdbc、mysql-connector-java、c3p0的依赖<br>mysql-connector-java 8.0以上版本的注意：</p>
-<ul>
-<li>DriverClass不在是com.mysql.jdbc.Driver，而是com.mysql.cj.jdbc.Driver</li>
-<li>JdbcUrl除了需要指定具体的库外，还需要加入?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true<br>如果没有符合以上的要求，会报错</li>
-</ul>
-<p><img src="/2019/05/31/spring-事务/QQ截图20190531124243.png" alt="报错信息"></p>
-<p>即会报无法打开JDBC连接的错误</p>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/MySQL学习-diay011/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/29/MySQL学习-diay011/" itemprop="url">MySQL学习_diay01</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-29T20:19:20+08:00">2019-05-29 20:19:20</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="MySQL深入学习-01"><a href="#MySQL深入学习-01" class="headerlink" title="MySQL深入学习_01"></a>MySQL深入学习_01</h2><h3 id="常见的MySQL存储引擎"><a href="#常见的MySQL存储引擎" class="headerlink" title="常见的MySQL存储引擎"></a>常见的MySQL存储引擎</h3><p>MyISAM、InnoDB为常用的两个MySQL数据库存储引擎，其区别为：</p>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/spring-aop/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/29/spring-aop/" itemprop="url">spring_aop</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-29T12:01:25+08:00">2019-05-29 12:01:25</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="SpringAop的学习"><a href="#SpringAop的学习" class="headerlink" title="SpringAop的学习"></a>SpringAop的学习</h2><h3 id="什么是aop"><a href="#什么是aop" class="headerlink" title="什么是aop"></a>什么是aop</h3><p>aop即是面向切面的编程，在程序运行期间动态地将某段程序代码切入到指定位置进行运行的编程方式。其原理是基于动态代理。</p>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/spring-属性赋值与自动装配/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/28/spring-属性赋值与自动装配/" itemprop="url">spring_属性赋值与自动装配</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-28T15:26:07+08:00">2019-05-28 15:26:07</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="spring-属性赋值与自动装配"><a href="#spring-属性赋值与自动装配" class="headerlink" title="spring_属性赋值与自动装配"></a>spring_属性赋值与自动装配</h2><h3 id="1-属性赋值"><a href="#1-属性赋值" class="headerlink" title="1.属性赋值"></a>1.属性赋值</h3><p>使用@value注解便可以使容器中的属性进行赋值</p>
-<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"#&#123;22-2&#125;"</span>)<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"zhangsan"</span>)<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"$&#123;person.nickNmae&#125;"</span>)<br>    <span class="hljs-keyword">private</span> String nickNmae;<br>    <span class="hljs-comment">//get()、set()方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/spring-Bean的生命周期/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/26/spring-Bean的生命周期/" itemprop="url">spring_Bean的生命周期</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-26T15:18:39+08:00">2019-05-26 15:18:39</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="spring中Bean的生命周期的了解"><a href="#spring中Bean的生命周期的了解" class="headerlink" title="spring中Bean的生命周期的了解"></a>spring中Bean的生命周期的了解</h2><p>初识Bean的生命周期：Bean容器的创建—&gt;初始化Bean—-&gt;Bean容器的销毁</p>
-<ul>
-<li>在xml中定义init-method和destroy-method属性，就可以定义初始化与销毁方法</li>
-<li>在注解模式下有三种方法</li>
-</ul>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/spring组件注册/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="嘤嘤怪&&🐶">
-        <meta itemprop="description" content>
-        <meta itemprop="image" content="/images/blog.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Hexo">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/25/spring组件注册/" itemprop="url">spring组件注册</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-25T21:29:39+08:00">2019-05-25 21:29:39</time></span>
-        </span>
-        
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h4 id="spring一个重要的技术是Ioc与DI"><a href="#spring一个重要的技术是Ioc与DI" class="headerlink" title="spring一个重要的技术是Ioc与DI"></a>spring一个重要的技术是Ioc与DI</h4><p>1.在传统开发中会创建一个xml文件，在其中定义一个bean，如下：<br><figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"people"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cn.hdu.bean.Person"</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"lisi"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br>       <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"age"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"22"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
+  </nav>
   
   
   
 
 <div class="comments" id="comments">
   
+  
+  <div id="vcomments" class="vcomments"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function () {
+    new Valine({
+      "el": "#vcomments",
+      "appId": "kRqMnbmUujwPVMH3Qqo272g2-gzGzoHsz",
+      "appKey": "vJuJTznw3VXLJwd5YYu3Q9HF",
+      "verify": "false",
+      "notify": "false",
+      "avatar": "mm",
+      "meta": ["nick", "mail", "link"],
+      "pageSize": 10,
+      "lang": "zh-cn",
+      "visitor": "false",
+      "highlight": "true",
+      "placeholder": "Write your comment here……",
+      "avatarForce": "false"
+    });
+  });
+  </script>
   
   
 </div>
@@ -661,6 +350,17 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>Table of Contents</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#实习"><span class="toc-text">实习</span></a></li></ol></div>
+    </div>
+    
     
     
     <hr>
